@@ -52,9 +52,9 @@ router.get('/produtotipos', ProdutoTiposController.listarProdutosTipos);
 // delete
 
 router.get('/usuarios', UsuariosController.listarUsuarios); 
-// post
-// patch
-// delete
+router.post('/usuarios', UsuariosController.cadastrarUsuarios); 
+router.patch('/usuarios', UsuariosController.editarUsuarios); 
+router.delete('/usuarios', UsuariosController.apagarUsuarios); 
 
 module.exports = router;
 
