@@ -6,7 +6,8 @@ module.exports = {
         try {
             const sql = 'SELECT usu_id, usu_nome, usu_email, usu_senha, usu_tipo, usu_ativo FROM usuarios;'; 
             const usuarios = await db.query(sql);
-            return response.status(200).json(usuarios[0]);
+            const nReg = usuarios[0].length; // mostrar na apostila somente numero de itens no resultado, itens como objeto e itens com registros
+            return response.status(200).json({'nItens': nReg, 'itens': usuarios[0]});
         } catch (error) {
             return response.status(500).json({confirma: 'Erro', message: error});
         }

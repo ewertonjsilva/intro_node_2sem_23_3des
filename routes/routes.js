@@ -42,7 +42,7 @@ router.get('/pedidos', PedidosController.listarPedidos);
 // delete
 
 router.get('/produtos', ProdutosController.listarProdutos); 
-// post
+router.post('/produtos', ProdutosController.cadastrarProdutos); 
 // patch
 // delete
 
