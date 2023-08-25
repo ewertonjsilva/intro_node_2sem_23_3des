@@ -43,8 +43,8 @@ router.get('/pedidos', PedidosController.listarPedidos);
 
 router.get('/produtos', ProdutosController.listarProdutos); 
 router.post('/produtos', ProdutosController.cadastrarProdutos); 
-// patch
-// delete
+router.patch('/produtos/:prd_id', ProdutosController.editarProdutos); // params(link) e body
+router.delete('/produtos/:prd_id', ProdutosController.apagarProdutos); // params(link) e body
 
 router.get('/produtotipos', ProdutoTiposController.listarProdutosTipos); 
 // post
