@@ -28,7 +28,7 @@ module.exports = {
             // identificação do id do registro inserido
             const usu_id = confirmacao[0].insertId;
             // reponde a requisição com a mensagem confirmando o ID do registro inserido
-            return response.status(200).json({confirma: 'Cadastro de produto realizado com sucesso', message: usu_id});
+            return response.status(200).json({confirma: 'Cadastro de usuario realizado com sucesso', message: usu_id});
         } catch (error) {
             return response.status(500).json({confirma: 'Erro', message: error});
         }
@@ -46,7 +46,13 @@ module.exports = {
             // execução e obtenção de confirmação da atualização realizada
             const atualizacao = await db.query(sql, values);
             // reponde a requisição com a mensagem confirmando o nº de registros atualizados
-            return response.status(200).json({confirma: 'Sucesso', message: 'Usuário ' + usu_id + " atualizado com sucesso!", "registrosAtualizados": atualizacao[0].affectedRows});         
+            return response.status(200).json(
+                {
+                    confirma: 'Sucesso', 
+                    message: 'Usuário ' + usu_id + " atualizado com sucesso!", 
+                    registrosAtualizados: atualizacao[0].affectedRows
+                }
+            );         
         } catch (error) {
             return response.status(500).json({confirma: 'Erro', message: error});
         }
