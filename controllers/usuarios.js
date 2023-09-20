@@ -58,8 +58,22 @@ module.exports = {
         }
     }, 
     async apagarUsuarios(request, response) {
-        try {
-            return response.status(200).json({confirma: 'Apagar Usuarios'});
+        try {            
+            // parâmetro passado via url na chamada da api pelo front-end
+            const { usu_id } = request.params;    
+            // comando de exclusão
+            const sql = 'DELETE FROM usuarios WHERE usu_id = ?'; 
+            // definição de array com os parâmetros que receberam os valores do front-end
+            const values = [usu_id];
+            // executa a instrução de exclusão no banco de dados    
+            await db.query(sql, values);  
+            // mensagem de retorno no formato JSON
+            return response.status(200).json(
+                {
+                    confirma: 'Sucesso', 
+                    message: 'Usuário com id ' + usu_id + ' excluído com sucesso'
+                }
+            ); 
         } catch (error) {
             return response.status(500).json({confirma: 'Erro', message: error});
         }
