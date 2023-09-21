@@ -10,7 +10,14 @@ module.exports = {
             // armazena na constante o número de registros que a instrução SELECT retornou
             const nReg = usuarios[0].length;
             // retorna os registros no formato JSON
-            return response.status(200).json({confirma: usuarios[0]});
+            return response.status(200).json(
+                {
+                    confirma: 'Sucesso', 
+                    message: 'Usuários cadastrados', 
+                    nItens: nReg, 
+                    itens: usuarios[0]
+                }
+            );
         } catch (error) {
             return response.status(500).json({confirma: 'Erro', message: error});
         }
@@ -28,7 +35,13 @@ module.exports = {
             // identificação do id do registro inserido
             const usu_id = confirmacao[0].insertId;
             // reponde a requisição com a mensagem confirmando o ID do registro inserido
-            return response.status(200).json({confirma: 'Cadastro de usuario realizado com sucesso', message: usu_id});
+            return response.status(200).json(
+                {
+                    confirma: 'Sucesso', 
+                    message: 'Cadastro de usuário efetuado.', 
+                    usu_id                    
+                }
+            );
         } catch (error) {
             return response.status(500).json({confirma: 'Erro', message: error});
         }
@@ -74,6 +87,25 @@ module.exports = {
                     message: 'Usuário com id ' + usu_id + ' excluído com sucesso'
                 }
             ); 
+        } catch (error) {
+            return response.status(500).json({confirma: 'Erro', message: error});
+        }
+    }, 
+    async ocultarUsuarios(request, response) {
+        try {
+            // parâmetros recebidos pelo corpo da requisição
+            const usu_ativo = false;
+            const { usu_id } = request.params; 
+            const sql = 'UPDATE usuarios SET usu_ativo = ? WHERE usu_id = ?;';  
+            const values = [usu_ativo, usu_id];    
+            const atualizacao = await db.query(sql, values);
+            return response.status(200).json(
+                {
+                    confirma: 'Sucesso', 
+                    message: 'Usuário ' + usu_id + " excluído com sucesso!", 
+                    registrosAtualizados: atualizacao[0].affectedRows
+                }
+            );         
         } catch (error) {
             return response.status(500).json({confirma: 'Erro', message: error});
         }

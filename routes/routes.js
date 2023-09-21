@@ -52,8 +52,9 @@ router.get('/produtotipos', ProdutoTiposController.listarProdutosTipos);
 
 router.get('/usuarios', UsuariosController.listarUsuarios); 
 router.post('/usuarios', UsuariosController.cadastrarUsuarios); 
-router.patch('/usuarios/:usu_id', UsuariosController.editarUsuarios); 
-router.delete('/usuarios', UsuariosController.apagarUsuarios); 
+router.patch('/usuarios/:usu_id', UsuariosController.editarUsuarios); // params(link) e body
+router.delete('/usuarios/:usu_id', UsuariosController.apagarUsuarios); // params(link) e body 
+router.patch('/usuarios/del/:usu_id', UsuariosController.ocultarUsuarios); // params(link) e body 
 
 module.exports = router;
 
