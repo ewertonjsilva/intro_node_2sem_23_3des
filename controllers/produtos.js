@@ -4,7 +4,7 @@ const db = require('../database/connection');
 module.exports = {
     async listarProdutos(request, response) {
         try {
-            const sql = 'SELECT prd_id, prd_nome, prd_valor, prd_unidade, ptp_id, prd_disponivel, prd_img, prd_destaque, prd_img_destaque, prd_descricao FROM produtos;'; 
+            const sql = 'SELECT prd_id, prd_nome, prd_valor, prd_unidade, ptp_id, prd_disponivel = 1 AS prd_disponivel, prd_img, prd_destaque = 1 AS prd_destaque, prd_img_destaque, prd_descricao FROM produtos;'; 
             const produtos = await db.query(sql);
             return response.status(200).json(produtos[0]);
         } catch (error) {
