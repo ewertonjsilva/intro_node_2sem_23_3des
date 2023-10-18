@@ -4,7 +4,7 @@ module.exports = {
     async listarUsuarios(request, response) {
         try {
             // armazena instruções SQL na constante
-            const sql = 'SELECT usu_id, usu_nome, usu_email, usu_senha, usu_tipo, usu_ativo = 1 as usu_ativo FROM usuarios;'; 
+            const sql = 'SELECT usu_id, usu_nome, usu_email, usu_senha, usu_tipo, usu_ativo = 1 as usu_ativo FROM usuarios WHERE usu_ativo = 1;'; 
             // executa instruções SQL e armazena o resultado na variável usuários
             const usuarios = await db.query(sql);
             // armazena na constante o número de registros que a instrução SELECT retornou
